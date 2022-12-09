@@ -1,0 +1,21 @@
+{
+    "name": "Blog",
+    "columns": {
+        "name": {
+            "required": true,
+            "type": "string"
+        },
+        "address": {
+            "required": true,
+            "type": "text"
+        },
+        "contact_no": {
+            "required": true,
+            "type": "string"
+        },
+        "status": {
+            "required": false,
+            "type": "tiny_int"
+        }
+    }
+}

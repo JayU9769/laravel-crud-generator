@@ -1,0 +1,98 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\{{modelName}}Request;
+use App\Http\Resources\{{modelName}}Resource;
+use App\Models\{{modelName}};
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Response;
+
+class {{modelName}}Controller extends Controller
+{
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return AnonymousResourceCollection
+     */
+    public function index()
+    {
+        return {{modelName}}Resource::collection({{modelName}}::query()->latest()->get());
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param {{modelName}}Request $request
+     * @return {{modelName}}Resource
+     */
+    public function store({{modelName}}Request $request)
+    {
+        return new {{modelName}}Resource({{modelName}}::query()->create($request->all()));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param {{modelName}} ${{modelNameSingularLowerCase}}
+     * @return {{modelName}}Resource
+     */
+    public function show({{modelName}} ${{modelNameSingularLowerCase}})
+    {
+        return new {{modelName}}Resource(${{modelNameSingularLowerCase}});
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param {{modelName}}Request $request
+     * @param {{modelName}} ${{modelNameSingularLowerCase}}
+     * @return {{modelName}}Resource
+     */
+    public function update({{modelName}}Request $request, {{modelName}} ${{modelNameSingularLowerCase}})
+    {
+        ${{modelNameSingularLowerCase}}->fill($request->all())->save();
+
+        return new {{modelName}}Resource(${{modelNameSingularLowerCase}});
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param {{modelName}} ${{modelNameSingularLowerCase}}
+     * @return JsonResponse
+     */
+    public function destroy({{modelName}} ${{modelNameSingularLowerCase}})
+    {
+        ${{modelNameSingularLowerCase}}->delete();
+        return response()->json([
+           'status' => true,
+           'message' => '{{modelName}} has been delete successfully'
+        ]);
+    }
+
+}

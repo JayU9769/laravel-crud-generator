@@ -1,0 +1,1 @@
+            $table->string('{{name}}', 155)->nullable();
